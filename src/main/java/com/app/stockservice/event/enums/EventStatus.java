@@ -1,5 +1,5 @@
-package com.app.orderservice.event.enums;
+package com.app.stockservice.event.enums;
 
 public enum EventStatus {
-    CREATED,SENT
+    CREATED,SENT,PENDING,NEW,CHECKING
 }

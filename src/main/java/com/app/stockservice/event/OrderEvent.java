@@ -1,20 +1,22 @@
-package com.app.orderservice.event;
+package com.app.stockservice.event;
 
 
-import com.app.orderservice.dto.OrderDto;
-import com.app.orderservice.event.enums.EventStatus;
+
+import com.app.stockservice.dto.OrderDto;
+import com.app.stockservice.event.enums.EventStatus;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
+
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder(setterPrefix = "with")
 @Data
-public class OrderEvent {
+public class OrderEvent implements Serializable {
 
     private String message;
     private EventStatus eventStatus;
     private OrderDto order;
+    private String id;
 }

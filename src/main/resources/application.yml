@@ -1,1 +1,15 @@
+server:
+    port: 8099
 
+stock-service-consumer:
+    bootstrap-servers: ${BOOTSTRAP_SERVERS:localhost:39092,localhost:49092}
+    topic-name: ${TOPIC_NAME:order-topic}
+    key-deserializer: ${KEY_DESERIALIZER:org.apache.kafka.common.serialization.StringDeserializer}
+    value-deserializer: ${VALUE_DESERIALIZER:org.springframework.kafka.support.serializer.JsonDeserializer}
+    group-id: ${GROUP_ID:stock-service-group}
+    auto-offset-reset: ${AUTO_OFFSET_RESET:earliest}
+    auto-offset-commit: ${AUTO_OFFSET_COMMIT:true}
+
+logging:
+    level:
+        org.apache.kafka: error

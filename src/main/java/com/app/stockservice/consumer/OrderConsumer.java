@@ -1,2 +1,4 @@
-package com.app.stockservice.consumer;public interface OrderConsumer {
+package com.app.stockservice.consumer;
+
+public interface OrderConsumer {
 }

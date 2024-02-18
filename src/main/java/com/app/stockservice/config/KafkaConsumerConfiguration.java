@@ -57,14 +57,15 @@ public class KafkaConsumerConfiguration {
         properties.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, valueDeserializer);
         properties.put(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, enableAutoCommit);
         properties.put(JsonDeserializer.TRUSTED_PACKAGES, "*");
-        properties.put(JsonDeserializer.VALUE_DEFAULT_TYPE, OrderEvent.class.getName());
+        properties.put(JsonDeserializer.VALUE_DEFAULT_TYPE, OrderEvent.class);
         return new DefaultKafkaConsumerFactory<>(properties);
     }
     @Bean
-    public KafkaListenerContainerFactory<ConcurrentMessageListenerContainer<String,OrderEvent>> kafkaListenerContainerFactory() {
+    public KafkaListenerContainerFactory<ConcurrentMessageListenerContainer<String,OrderEvent>> kafkaListenerContainerFactory
+            (ConsumerFactory<String, OrderEvent> consumerFactory) {
         ConcurrentKafkaListenerContainerFactory<String, OrderEvent> factory =
                 new ConcurrentKafkaListenerContainerFactory<>();
-        factory.setConsumerFactory(consumerFactory());
+        factory.setConsumerFactory(consumerFactory);
         factory.getContainerProperties().setAckMode(ContainerProperties.AckMode.RECORD);
 
         return factory;
